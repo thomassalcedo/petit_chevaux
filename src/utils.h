@@ -6,6 +6,17 @@
 #ifndef H_UTILS
 #define H_UTILS
 
+#ifdef _WIN32
+#define clear system("cls");
+#else
+#define clear system("clear");
+#endif
+
+#define sleep sleep(1);
+#define TAILLE 15
+#define RESETCOLOR "\033[0m"
+#define NBCHEVAUX 4
+
 typedef struct joueur{
 	int nb; 		// Numero du joueur
 	char couleur[8];
@@ -26,12 +37,6 @@ typedef struct coord{
 	int y;
 } Coord;
 
-#define clear system("clear");
-#define sleep sleep(1);
-
-#define TAILLE 15
-#define RESETCOLOR "\033[0m"
-#define NBCHEVAUX 4
 
 int toss(); // Nb aléatoire entre 1 et 6
 
