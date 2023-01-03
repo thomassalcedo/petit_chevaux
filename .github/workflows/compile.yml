@@ -27,7 +27,8 @@ jobs:
           compiler: gcc-latest
 
       - name: debug
-        run: echo "Valeur de CC: $CC"
+        run: |
+          echo "Valeur de CC: $CC"
         
       - name: Use compiler
         # if: ${{ matrix.os }} == 'windows-latest'
