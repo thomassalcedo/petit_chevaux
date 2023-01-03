@@ -8,9 +8,34 @@ on:
   workflow_dispatch:
 
 jobs:
+
   build:
     strategy:
       matrix:
         os-version: [ ubuntu-latest, windows-latest  ]
     runs-on: ${{ matrix.os }}
-          
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v3
+
+      - name: Install compiler
+        id: install_cc
+        uses: rlalik/setup-cpp-compiler@master
+        with:
+          compiler: latest
+        
+      - name: Use compiler
+        #shell: bash
+        env:
+            CC: ${{ steps.install_cc.outputs.cc }}
+        run: |
+          mkdir output
+          $CC -Wall -Wpedantic -Wextra src/*.c -o "output/$matrix.os_petitChevaux"
+
+      - name: Export binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: binaries
+          path: output/*
