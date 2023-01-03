@@ -24,18 +24,27 @@ jobs:
         id: install_cc
         uses: rlalik/setup-cpp-compiler@master
         with:
-          compiler: latest
+          compiler: gcc-latest
         
-      - name: Use compiler
-        #shell: bash
+      - name: Use windows compiler
+        # if: ${{ matrix.os }} == 'windows-latest'
         env:
             CC: ${{ steps.install_cc.outputs.cc }}
         run: |
           mkdir output
-          $CC -Wall -Wpedantic -Wextra src/*.c -o "output/$matrix.os_petitChevaux"
+          $CC -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux"
+
+      # - name: Use windows compiler
+      #   if: ${{ matrix.os }} == 'ubuntu-latest'
+      #   env:
+      #       CC: ${{ steps.install_cc.outputs.cc }}
+      #   run: |
+      #     mkdir output
+      #     $CC -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux"
+      #   shell: bash
 
       - name: Export binary
         uses: actions/upload-artifact@v3
         with:
-          name: binaries
-          path: output/*
+          name: ${{matrix.os}}_binary
+          path: output/petits_chevaux
