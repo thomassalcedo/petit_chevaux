@@ -93,7 +93,7 @@ void jeu(){
 		for (k = 0; k<info.nbJoueur; k++){ // Pour chaque joueur
 			clear;
 			nbChevauxFini = getNbChevauxFini(j[k], info);
-			printf("Au turn de %sJoueur %d%s\n%d cheval(chevaux) fini(s)\n",j[k].couleur, j[k].nb, RESETCOLOR, nbChevauxFini); // Mettre de la couleur dans l'affichage
+			printf("Au tour de %sJoueur %d%s\n%d cheval(chevaux) fini(s)\n",j[k].couleur, j[k].nb, RESETCOLOR, nbChevauxFini); // Mettre de la couleur dans l'affichage
 			display(j, info, table);
 			if(j[k].nature == 1){ // Si joueur humain
 				beforeTurn(j,k,info);
