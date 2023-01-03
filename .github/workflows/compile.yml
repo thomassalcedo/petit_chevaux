@@ -27,25 +27,17 @@ jobs:
           compiler: gcc-latest
 
       - name: debug
+        env:
+              CC: ${{ steps.install_cc.outputs.cc }}
         run: |
           echo "Valeur de CC: $CC"
         
       - name: Use compiler
-        # if: ${{ matrix.os }} == 'windows-latest'
         env:
             CC: ${{ steps.install_cc.outputs.cc }}
         run: |
           mkdir output;
           $CC -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux";
-
-      # - name: Use windows compiler
-      #   if: ${{ matrix.os }} == 'ubuntu-latest'
-      #   env:
-      #       CC: ${{ steps.install_cc.outputs.cc }}
-      #   run: |
-      #     mkdir output
-      #     $CC -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux"
-      #   shell: bash
 
       - name: Export binary
         uses: actions/upload-artifact@v3
