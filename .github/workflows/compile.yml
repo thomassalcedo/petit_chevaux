@@ -30,14 +30,15 @@ jobs:
         # env:
         #     CC: ${{ steps.install_cc.outputs.cc }}
         run: |
-          echo "Generate output folder"
+          echo "- Generate output folder"
           mkdir output
+          echo "- List the directory"
           ls
-          echo "Compile source code"
+          echo "- Compile source code"
           gcc -v -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux"
 
       - name: Export binary
         uses: actions/upload-artifact@v3
         with:
           name: ${{matrix.os}}_binary
-          path: output/petits_chevaux
+          path: output/*
