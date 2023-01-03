@@ -25,19 +25,15 @@ jobs:
         uses: rlalik/setup-cpp-compiler@master
         with:
           compiler: gcc-latest
-
-      - name: debug
-        env:
-          CC: ${{ steps.install_cc.outputs.cc }}
-        run: |
-          echo "Valeur de CC: $CC"
         
       - name: Use compiler
-        env:
-            CC: ${{ steps.install_cc.outputs.cc }}
+        # env:
+        #     CC: ${{ steps.install_cc.outputs.cc }}
         run: |
-          mkdir output;
-          gcc -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux";
+          echo "Generate output folder"
+          mkdir output
+          echo "Compile source code"
+          gcc -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux"
 
       - name: Export binary
         uses: actions/upload-artifact@v3
