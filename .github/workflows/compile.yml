@@ -26,14 +26,14 @@ jobs:
         with:
           compiler: gcc-latest
         
-      - name: Use windows compiler
+      - name: Use compiler
         # if: ${{ matrix.os }} == 'windows-latest'
         env:
             CC: ${{ steps.install_cc.outputs.cc }}
         run: |
-          mkdir output
-          echo $CC
-          $CC -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux"
+          mkdir output;
+          echo "Valeur de CC: $CC";
+          $CC -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux";
 
       # - name: Use windows compiler
       #   if: ${{ matrix.os }} == 'ubuntu-latest'
