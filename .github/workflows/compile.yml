@@ -27,15 +27,11 @@ jobs:
           compiler: gcc-latest
         
       - name: Use compiler
-        # env:
-        #     CC: ${{ steps.install_cc.outputs.cc }}
         run: |
           echo "- Generate output folder"
           mkdir output
-          echo "- List the directory"
-          ls
           echo "- Compile source code"
-          gcc -v -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux"
+          gcc -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux"
 
       - name: Export binary
         uses: actions/upload-artifact@v3
