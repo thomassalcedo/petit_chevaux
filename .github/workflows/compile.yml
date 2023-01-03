@@ -32,6 +32,7 @@ jobs:
             CC: ${{ steps.install_cc.outputs.cc }}
         run: |
           mkdir output
+          echo $CC
           $CC -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux"
 
       # - name: Use windows compiler
