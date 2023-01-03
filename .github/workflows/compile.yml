@@ -28,7 +28,7 @@ jobs:
 
       - name: debug
         env:
-              CC: ${{ steps.install_cc.outputs.cc }}
+          CC: ${{ steps.install_cc.outputs.cc }}
         run: |
           echo "Valeur de CC: $CC"
         
@@ -37,7 +37,7 @@ jobs:
             CC: ${{ steps.install_cc.outputs.cc }}
         run: |
           mkdir output;
-          $CC -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux";
+          gcc -Wall -Wpedantic -Wextra src/*.c -o "output/petits_chevaux";
 
       - name: Export binary
         uses: actions/upload-artifact@v3
