@@ -1,0 +1,16 @@
+name: Compilation CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os-version: [ ubuntu-latest, windows-latest  ]
+    runs-on: ${{ matrix.os }}
+          
