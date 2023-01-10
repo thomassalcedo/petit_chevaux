@@ -26,12 +26,15 @@ Info menu (){ // Menu qui va récupérer la configuration de la partie
 						clear;
 						printf("Trop de joueurs !!\n");
 						fflush(stdin);
+					}else if (h+nh == 0){
+						clear;
+						printf("Pas assez de joueur !!\n");
+						fflush(stdin);
 					}else if (1 > nbChevaux || nbChevaux > 4){
 						clear;
 						printf("Le nombre de chevaux doit être entre 1 et 4\n");
 						fflush(stdin);
-					}
-					else{
+					}else{
 						joueur.nbJoueur = h+nh;
 						joueur.h = h;
 						joueur.nh = nh;
